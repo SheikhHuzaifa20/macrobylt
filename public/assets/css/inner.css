@@ -1,0 +1,704 @@
+/* shop css start */
+
+.inner-banner {
+  background: var(--black-dark-color);
+  padding: 50px 0;
+}
+
+.banner-content {
+  text-align: center;
+}
+
+.banner-content h1 {
+  color: var(--white-color);
+  font-size: 75px;
+}
+
+.banner-content h5 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  color: var(--white-color);
+  font-size: 12px;
+}
+
+.banner-content h5 a {
+  color: var(--white-color);
+}
+.shop_pg .main-featured {
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+.shop_pg .product-img:hover {
+  background: #000000ad;
+}
+.shop_pg .btn.red-btn {
+  bottom: 70px;
+  margin: auto;
+  width: 50%;
+  background: transparent;
+  border: 2px solid var(--white-color);
+  height: 40px;
+  opacity: 0;
+}
+
+.shop_pg .main-featured:hover .btn.red-btn {
+  bottom: 100px;
+  opacity: 1;
+  transition: all ease 0.5s;
+}
+
+/* shop css end */
+
+/* contact-form css start */
+
+.contact-form {
+  background-image: url(../images/contact-back.webp);
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 800px;
+  display: flex;
+  align-items: center;
+}
+
+.form-info h2 {
+  color: var(--white-color);
+  font-size: 60px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.form-info label {
+  color: var(--white-color);
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.form-info {
+  margin: auto;
+  width: 70%;
+}
+
+.form-info .form-control {
+  background: transparent;
+  border: 2px solid var(--white-color);
+  border-radius: 0;
+  height: 45px;
+}
+
+.form-info textarea {
+  height: unset !important;
+}
+
+.form-info .form-btn {
+  border: none;
+  background: #e62e2d;
+  color: var(--white-color);
+  font-size: 16px;
+  font-weight: 600;
+}
+/* contact-form css end */
+
+/* macrosurge-pre css start */
+
+.product-inner {
+  padding: 50px 0;
+  background: #1a1a1a;
+}
+
+.main-products {
+  position: relative;
+  z-index: 0;
+}
+
+.product-inner .percent-ratio {
+  position: absolute;
+  z-index: 0;
+  background: #858585;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 60%;
+  right: 40px;
+  top: 0;
+}
+
+.percent-ratio span {
+  color: var(--white-color);
+  font-size: 15px;
+}
+.detail-one h1 {
+  color: var(--white-color);
+  font-size: 35px;
+  font-family: "Manrope";
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.detail-one h5 {
+  color: var(--white-color);
+  font-weight: 600;
+  font-size: 28px;
+  margin-bottom: 25px;
+}
+
+.detail-one h5 span {
+  font-size: 25px;
+  color: #ffffff80;
+  position: relative;
+  z-index: 0;
+}
+
+.detail-one h5 span:before {
+  position: absolute;
+  z-index: 0;
+  content: "";
+  left: 0;
+  width: 100%;
+  height: 2px;
+  top: 17px;
+  background: #ffffff80;
+}
+.detail-one h6 {
+  color: #bebfc0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.detail-one p {
+  color: var(--para-color);
+  font-size: 18px;
+  width: 100%;
+  margin-bottom: 30px;
+}
+.flaver-detail h5 {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 9px;
+  text-align: center;
+  position: relative;
+  z-index: 0;
+}
+
+.falver-btn .flaver-bnt {
+  display: block;
+  background: var(--black-dark-color);
+  color: var(--white-color);
+  width: 100%;
+  margin-bottom: 10px;
+  border: 1px solid var(--white-color);
+  height: 35px;
+  padding: 0;
+}
+.countre-div {
+  display: flex;
+  align-items: center;
+  gap: 0px;
+  margin-top: 50px;
+}
+
+.plus-minus .counter-span {
+  width: 25%;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--para-color);
+  color: var(--para-color);
+  font-size: 11px;
+  background: transparent;
+}
+
+.plus-minus {
+  display: flex;
+  align-items: center;
+  width: 20%;
+}
+
+.main-products .owl-nav button {
+  position: absolute;
+  z-index: 0;
+  top: 35%;
+  outline: none !important;
+  background: transparent !important;
+  font-size: 70px !important;
+  opacity: 0;
+  transition: all ease 0.5s;
+}
+
+.main-products .owl-nav .owl-prev {
+  left: -60px;
+  transition: all ease 0.5s;
+}
+.main-products .owl-nav .owl-next {
+  right: -60px;
+  transition: all ease 0.5s;
+}
+
+.main-products .owl-nav button span {
+  color: var(--white-color);
+}
+
+.main-products:hover .owl-nav button {
+  opacity: 1;
+  transition: all ease 0.5s;
+}
+.main-products:hover .owl-nav .owl-prev {
+  left: 0;
+  transition: all ease 0.5s;
+}
+.main-products:hover .owl-nav .owl-next {
+  right: 0;
+  transition: all ease 0.5s;
+}
+
+.main-products:hover .img-carousel img {
+  transform: scale(1.5);
+  transition: all ease 0.5s;
+}
+.main-products .img-carousel img {
+  transition: all ease 0.5s;
+}
+.main-products .img-carousel {
+  overflow: hidden;
+}
+
+.limits-sec {
+  background: var(--white-color);
+  padding: 50px 0;
+  text-align: center;
+}
+
+.limits-break h3 {
+  font-size: 40px;
+  font-family: "Manrope";
+  font-weight: 800;
+  color: var(--black-dark-color);
+}
+.supplement-fact .main-products:hover .img-carousel img {
+  transform: unset;
+}
+.stack-ul ul li {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px 0;
+}
+
+.stack-ul ul li p {
+  margin: 0;
+  color: var(--white-color);
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.supplement-fact {
+  background: var(--black-dark-color);
+}
+.premium-formula {
+  background: var(--black-dark-color);
+  padding: 50px 0;
+}
+
+.formula-flex ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.formula-flex ul li {
+  width: 30%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+  gap: 20px;
+}
+.formula-para p {
+  color: var(--white-color);
+  font-size: 24px;
+  font-weight: 500;
+  margin: 0;
+}
+.formula-img img {
+  filter: grayscale(1);
+}
+.backed-formula {
+  background: var(--white-color);
+}
+
+.backed-formula .stack-ul ul li p {
+  color: var(--black-color);
+  font-size: 18px;
+  width: 80%;
+}
+
+.stack_well {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  background-image: url(../images/product_banner-1.webp);
+  background-position: center;
+  background-repeat: repeat;
+}
+
+.stack-h h3 {
+  font-size: 38px;
+  text-align: center;
+  font-family: "Manrope";
+  color: var(--white-color);
+  font-weight: 800;
+  margin-bottom: 40px;
+}
+.stack-rows .main-featured a .percent-ratio {
+  left: 0;
+}
+
+.stack-rows .btn.red-btn {
+  opacity: 1;
+  display: flex;
+  justify-content: center;
+  background: var(--red-color);
+  color: var(--white-color) !important;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+}
+
+.stack-rows .product-name {
+  padding-bottom: 50px;
+}
+
+.stack-rows .main-featured:hover .btn.red-btn {
+  bottom: 0px;
+}
+.stack-rows {
+  background: var(--white-color);
+  border-radius: 20px;
+  padding: 30px;
+}
+
+.stack-rows .product-name h6 a {
+  color: var(--black-dark-color);
+}
+
+.stack-rows .product-name h6 span {
+  color: var(--black-dark-color);
+}
+
+.stack-rows .product-name h6 span {
+  color: var(--para-color);
+}
+
+.stack-rows .product-name h6 span:before {
+  background: var(--para-color);
+}
+.stack-rows .btn.red-btn span {
+  font-size: 12px;
+  line-height: 2;
+}
+
+.guarantee {
+  padding: 40px 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: auto;
+  width: 70%;
+  background: var(--black-dark-color);
+  margin-top: 100px;
+  border-radius: 5px;
+  border: 3px solid var(--para-color);
+  justify-content: space-evenly;
+}
+
+.guarantee p {
+  font-size: 25px;
+  color: var(--white-color);
+  font-weight: 700;
+}
+
+.guarantee-img {
+  width: 20%;
+}
+
+/* macrosurge-pre css end */
+
+/* macroshred-ignite css start */
+
+.stack-ul p {
+  margin: 0;
+  color: var(--para-color);
+  font-size: 17px;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+.backed-formula .stack-ul p {
+  color: var(--black-color);
+  font-size: 18px;
+  width: 80%;
+}
+
+/* macroshred-ignite css end */
+
+/* macroboost-ultra-test css start */
+
+.detail-one h1 span {
+  color: var(--para-color);
+  font-size: 22px;
+  margin-bottom: 30px;
+  font-weight: 400;
+}
+
+.stack-ul h3 {
+  font-size: 40px;
+  color: var(--white-color);
+  font-family: "Manrope";
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+.stack-ul .red-btn {
+  width: 25%;
+  margin-top: 20px;
+}
+/* macroboost-ultra-test css end */
+
+/* fat-loss-accelerator-program css start */
+
+.flaver-detail ul {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 50px;
+  gap: 20px;
+  padding-bottom: 50px;
+}
+
+.flaver-detail ul li {
+  width: 30%;
+}
+
+.bottle-add-product img {
+  margin: auto;
+  width: 100%;
+  transition: all ease 0.5s;
+}
+
+.bottle-add-product {
+  position: relative;
+  z-index: 0;
+  height: 140px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  margin: auto;
+  width: 80%;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.bottle-add-product a {
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  right: 0;
+  top: 50px;
+  color: var(--white-color);
+  font-size: 16px;
+  opacity: 0;
+  transition: all ease 0.5s;
+}
+.bottle-add-info {
+  text-align: center;
+  background: #ffffffde;
+  margin: auto;
+  width: 65%;
+  border-radius: 10px;
+  padding: 5px;
+  margin-top: -22px;
+  position: relative;
+  z-index: 5;
+}
+
+.bottle-add-info h5 {
+  font-size: 13px;
+  color: var(--black-color);
+}
+
+.add-product h6 {
+  font-size: 12px;
+  color: var(--black-color);
+}
+
+.add-product h6 span {
+  position: relative;
+  z-index: 0;
+}
+
+.add-product h6 span:before {
+  position: absolute;
+  z-index: 0;
+  content: "";
+  left: 0;
+  top: 8px;
+  width: 100%;
+  height: 1px;
+  background: var(--black-color);
+}
+.bottle-add-product:hover {
+  background: var(--black-color);
+}
+.add-product:hover .bottle-add-product img {
+  transform: scale(1.1);
+  opacity: 0.5;
+  transition: all ease 0.5s;
+}
+.add-product:hover .bottle-add-product a {
+  opacity: 1;
+  transition: all ease 0.5s;
+}
+
+.border-line h5 {
+  display: inline-block;
+  padding: 6px 14px;
+  color: rgb(212, 175, 55);
+}
+
+.border-line {
+  text-align: center;
+  position: relative;
+  z-index: 0;
+}
+.border-line h5:before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: -5px;
+  width: 2px;
+  height: 70%;
+  transform: rotate(220deg);
+  background-color: rgb(212, 175, 55);
+}
+.border-line h5:after {
+  content: "";
+  position: absolute;
+  right: 5px;
+  bottom: -5px;
+  width: 2px;
+  height: 70%;
+  transform: rotate(220deg);
+  background-color: rgb(212, 175, 55);
+}
+.border-afbf {
+  position: relative;
+  z-index: 0;
+}
+.border-afbf:before {
+  content: "";
+  position: absolute;
+  left: 42%;
+  top: -3px;
+  width: 2px;
+  height: 2px;
+  background-color: rgb(212, 175, 55);
+  width: 15%;
+}
+.border-afbf:after {
+  content: "";
+  position: absolute;
+  right: 42%;
+  bottom: 6px;
+  width: 2px;
+  height: 2px;
+  background-color: rgb(212, 175, 55);
+  width: 15%;
+}
+.border-line:before {
+  position: absolute;
+  z-index: 0;
+  content: "";
+  left: 0;
+  top: 13px;
+  width: 39.5%;
+  height: 3px;
+  background: rgb(212, 175, 55);
+}
+.border-line:after {
+  position: absolute;
+  z-index: 0;
+  content: "";
+  right: 0;
+  top: 15px;
+  width: 39.5%;
+  height: 3px;
+  background: rgb(212, 175, 55);
+}
+.select-option {
+  align-items: center;
+  background-color: #0000001f;
+  border-left: 13px solid;
+  border-radius: 5px;
+  display: flex;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 11px;
+  margin-bottom: 20px;
+  border-color: #ffffffde;
+}
+
+.select-option p {
+  margin: 0;
+}
+.cart-red .red-btn {
+  width: 25%;
+  margin-top: 20px;
+  height: 45px;
+}
+.stack-ul h5 {
+  color: var(--black-dark-color);
+  font-size: 20px;
+  font-weight: 700;
+  margin: 30px 0;
+}
+/* fat-loss-accelerator-program css end */
+
+/* refund-policy css start */
+
+.term_pg {
+  padding: 50px 0;
+}
+
+.term-content h4 {
+  color: var(--white-color);
+  font-size: 20px;
+  font-family: "Manrope";
+  font-weight: 800;
+}
+
+.term-content p {
+  margin: 20px 0;
+  color: var(--para-color);
+  font-size: 18px;
+  line-height: 30px;
+}
+
+.term-content ul li p {
+  margin: 0;
+}
+
+.term-content ul {
+  list-style: disc !important;
+  color: var(--white-color);
+  padding-left: 1rem;
+}
+
+.term-content ul li {
+  font-size: 22px;
+}
+
+/* refund-policy css end */

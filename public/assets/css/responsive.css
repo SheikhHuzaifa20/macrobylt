@@ -1,0 +1,149 @@
+/* responsive 5/25/2024 start */
+
+@media (max-width: 1440px) {
+  span.custom-text.text-1 {
+    left: 20px;
+  }
+
+  span.bootle.letter-x img {
+    height: 530px;
+  }
+
+  span.bootle.letter-x {
+    text-align: center;
+  }
+  .flating-bottles.top {
+    right: -500px;
+  }
+
+  span.custom-text.text-2 {
+    right: 70px;
+  }
+
+  span.custom-text {
+    font-size: 180px;
+  }
+}
+
+@media (max-width: 1199px) {
+  span.custom-text {
+    font-size: 180px;
+  }
+
+  span.bootle.letter-x img {
+    height: 500px;
+  }
+
+  span.bg-bottle img {
+    height: 520px;
+  }
+  .flating-bottles.top {
+    right: -400px;
+  }
+  span.custom-text {
+    font-size: 150px;
+  }
+
+  span.flating-bottles.bottom {
+    left: -100px;
+    bottom: 80px;
+  }
+}
+
+@media (max-width: 991px) {
+  span.bootle.letter-x img {
+    height: 420px;
+  }
+
+  span.bg-bottle img {
+    height: 500px;
+  }
+
+  span.custom-text {
+    font-size: 140px;
+  }
+
+  .flating-bottles img {
+    max-width: 150px;
+  }
+  .flating-bottles.top {
+    right: -350px;
+  }
+  span.custom-text.text-2 {
+    right: 30px;
+    top: 350px;
+  }
+
+  span.custom-text {
+    font-size: 110px;
+  }
+
+  span.flating-bottles.bottom {
+    left: -120px;
+    bottom: 150px;
+  }
+}
+
+@media (max-width: 767px) {
+  .flating-bottles.top {
+    right: -280px;
+    top: 100px;
+  }
+
+  .flating-bottles img {
+    max-width: 120px;
+  }
+
+  span.custom-text {
+    font-size: 100px;
+  }
+
+  span.flating-bottles.bottom {
+    bottom: 220px;
+  }
+
+  span.custom-text.text-2 {
+    right: 20px;
+  }
+  span.custom-text {
+    font-size: 110px;
+  }
+}
+
+@media (max-width: 575px) {
+  span.bootle.letter-x img {
+    height: 300px;
+  }
+
+  span.bg-bottle img {
+    height: 370px;
+  }
+
+  span.custom-text {
+    font-size: 70px;
+  }
+
+  span.custom-text.text-1 {
+    top: 50px;
+  }
+  span.box.box1 {
+    margin-left: 10px;
+  }
+  .flating-bottles.top {
+    right: -250px;
+    top: 70px;
+  }
+
+  span.flating-bottles.bottom {
+    bottom: 50px;
+    left: -60px;
+  }
+
+  span.custom-text.text-2 {
+    top: 200px;
+  }
+  span.bootle {
+    top: -30px;
+  }
+}
+/* responsive 5/25/2024 end */
