@@ -1,346 +1,168 @@
 @extends('layouts.main')
 @section('content')
-    {{ Session::get('success') }}
-    <section class="product-inner">
+    <section class="product-inner py-5" style="background-color: #f8f9fa;">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="main-products">
-                        <div class="percent-ratio">
-                            <span>{{ $value->discount_price }}%</span>
-                        </div>
-                        <div class="product-slides owl-carousel owl-theme">
-                            @foreach ($product_images as $value)
-                                <div class="item">
-                                    <div class="img-carousel">
-                                        <a href="#select_one">
-                                            <img src="{{ asset($value->image) }}" class="img-fluid" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                            @endforeach
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="detail-one">
-                        <h1 name="name">{{ $product->product_title }}</h1>
-                        <h5><span>${{ $product->total_price }}</span>${{ $product->price }}</h5>
-
-                        {!! $product->description !!}
-
-                        <div class="countre-div">
-                            <div class="plus-minus counter">
-                                <button class="counter-span decrement"><i class="fa-solid fa-minus"></i></button>
-                                <button class="counter-span count">1</button>
-                                <button class="counter-span increment"><i class="fa-solid fa-plus"></i></button>
+            <div class="row align-items-center">
+                <!-- Product Image Gallery -->
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="main-products bg-white p-4 shadow-sm text-center position-relative" style="border-radius: 20px;">
+                        @if(!empty($product->discount_price))
+                            <div class="percent-ratio bg-danger text-white font-weight-bold px-3 py-1 position-absolute" style="top: 20px; left: 20px; border-radius: 10px; z-index: 10;">
+                                <span>-{{ $product->discount_price }}% OFF</span>
                             </div>
-                            @if (Auth::user()->role == 3)
-                                <div class="counter-btn">
-                                    <button type="submit" class="btn red-btn">ADD TO CART</button>
-                                </div>
-                            @else
-                                <form method="post" action="{{ route('save_cart') }}">
-                                    @csrf
-                                    <input type="hidden" name="product_id" id="product_id" value="{{ $product->id }}">
-                                    <input type="hidden" name="name" id="name"
-                                        value="{{ $product->product_title }}">
-                                    <input type="hidden" name="price" id="price" value="{{ $product->total_price }}">
-                                    <input type="hidden" name="qty" id="qty" value="1">
-                                    <div class="counter-btn">
-                                        <button type="submit" class="btn red-btn">ADD TO CART</button>
-                                    </div>
-                                </form>
+                        @endif
+                        <div class="product-main-img py-3" style="min-height: 350px; display: flex; align-items: center; justify-content: center;">
+                            <img src="{{ asset($product->image) }}" class="img-fluid rounded" alt="{{ $product->product_title }}" style="max-height: 350px; object-fit: contain;">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Details & Add to Cart -->
+                <div class="col-lg-6">
+                    <div class="detail-one bg-white p-4 shadow-sm" style="border-radius: 20px;">
+                        <span class="badge badge-primary px-3 py-2 mb-2" style="background-color: #0099cc;">OFFICIAL GADGETGROVE ACCESSORY</span>
+                        <h2 class="font-weight-bold mb-3" style="color: #111;">{{ $product->product_title }}</h2>
+                        
+                        <div class="price-box mb-4">
+                            @if(!empty($product->total_price))
+                                <span class="text-muted text-decoration-line-through h4 mr-2" style="text-decoration: line-through;">${{ $product->total_price }}</span>
                             @endif
+                            <span class="text-danger font-weight-bold display-4">${{ $product->price }}</span>
                         </div>
-                    </div>
 
+                        <div class="description-box mb-4 text-muted">
+                            <p class="lead" style="font-size: 1.05rem; line-height: 1.6;">
+                                {!! $product->description !!}
+                            </p>
+                        </div>
+
+                        <div class="features-list mb-4 p-3 rounded" style="background-color: #f1f5f9;">
+                            <div class="row">
+                                <div class="col-6 mb-2">
+                                    <i class="fa-solid fa-check-circle text-success mr-2"></i> In Stock & Ready to Ship
+                                </div>
+                                <div class="col-6 mb-2">
+                                    <i class="fa-solid fa-truck-fast text-primary mr-2"></i> Free Express Delivery
+                                </div>
+                                <div class="col-6 mb-2">
+                                    <i class="fa-solid fa-shield-halved text-info mr-2"></i> 1-Year GadgetGrove Warranty
+                                </div>
+                                <div class="col-6 mb-2">
+                                    <i class="fa-solid fa-rotate-left text-warning mr-2"></i> 30-Day Money Back Guarantee
+                                </div>
+                            </div>
+                        </div>
+
+                        <form method="post" action="{{ route('save_cart') }}" class="add-to-cart-form">
+                            @csrf
+                            <input type="hidden" name="product_id" id="product_id" value="{{ $product->id }}">
+                            <input type="hidden" name="name" id="name" value="{{ $product->product_title }}">
+                            <input type="hidden" name="price" id="price" value="{{ $product->price }}">
+
+                            <div class="d-flex align-items-center gap-3 mb-4">
+                                <div class="form-group mb-0 mr-3" style="width: 120px;">
+                                    <label class="font-weight-bold small text-muted">QUANTITY:</label>
+                                    <input type="number" name="qty" id="qty" value="1" min="1" max="10" class="form-control text-center font-weight-bold" style="border-radius: 10px; height: 48px;">
+                                </div>
+                                <div class="flex-grow-1">
+                                    <label class="d-block opacity-0 small">&nbsp;</label>
+                                    <button type="submit" class="btn red-btn btn-block font-weight-bold shadow py-3" style="border-radius: 30px; font-size: 1.1rem;">
+                                        ADD TO CART <i class="fa-solid fa-cart-shopping ml-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="limits-sec">
+    <!-- Product Highlights -->
+    <section class="premium-formula py-5 bg-white">
         <div class="container">
+            <div class="row text-center mb-4">
+                <div class="col-lg-12">
+                    <h3 class="font-weight-bold text-uppercase">ENGINEERED FOR EXCELLENCE</h3>
+                    <p class="text-muted">Built with premium materials and rigorous testing standards.</p>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-lg-2 col-md-4 col-6 mb-3 m-auto">
+                    <div class="p-3 border rounded shadow-sm h-100">
+                        <i class="fa-solid fa-microchip text-primary mb-2" style="font-size: 2rem;"></i>
+                        <p class="font-weight-bold small mb-0">Smart IC Chip</p>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6 mb-3 m-auto">
+                    <div class="p-3 border rounded shadow-sm h-100">
+                        <i class="fa-solid fa-fire-burner text-danger mb-2" style="font-size: 2rem;"></i>
+                        <p class="font-weight-bold small mb-0">Overheat Guard</p>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6 mb-3 m-auto">
+                    <div class="p-3 border rounded shadow-sm h-100">
+                        <i class="fa-solid fa-mobile-screen text-success mb-2" style="font-size: 2rem;"></i>
+                        <p class="font-weight-bold small mb-0">Universal Fit</p>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6 mb-3 m-auto">
+                    <div class="p-3 border rounded shadow-sm h-100">
+                        <i class="fa-solid fa-award text-warning mb-2" style="font-size: 2rem;"></i>
+                        <p class="font-weight-bold small mb-0">Certified Quality</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Products -->
+    @if(isset($data) && count($data) > 0)
+    <section class="stack_well py-5" style="background-color: #f8f9fa;">
+        <div class="container">
+            <div class="row text-center mb-4">
+                <div class="col-lg-12">
+                    <h3 class="font-weight-bold text-uppercase">RELATED MOBILE ACCESSORIES</h3>
+                </div>
+            </div>
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="limits-break">
-                        <h3>{{ $product->section_2_h1 }}</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-
-    <section class="product-inner supplement-fact">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <div class="main-products">
-                        <div class="img-carousel">
-                            <a href="#">
-                                <img src="{{ asset($product->image_2) }}" class="img-fluid" alt="">
-                            </a>
-
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="stack-ul">
-                        {!! $product->section_2_p !!}
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="premium-formula">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="formula-flex">
-                        <ul>
-                            <li>
-                                <div class="formula-img">
-                                    <img src="{{ url('assets/images/icon-1.png') }}" class="img-fluid" alt="">
-                                </div>
-                                <div class="formula-para">
-                                    <p>Premium Formula</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="formula-img">
-                                    <img src="{{ url('assets/images/icon-2.png') }}" class="img-fluid" alt="">
-                                </div>
-                                <div class="formula-para">
-                                    <p>Full Transparency Label</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="formula-img">
-                                    <img src="{{ url('assets/images/icon-3.png') }}" class="img-fluid" alt="">
-                                </div>
-                                <div class="formula-para">
-                                    <p>
-                                        Research-Backed Ingredients</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="formula-img">
-                                    <img src="{{ url('assets/images/icon-4.png') }}" class="img-fluid" alt="">
-                                </div>
-                                <div class="formula-para">
-                                    <p>No Side Effects</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="formula-img">
-                                    <img src="{{ url('assets/images/icon-5.png') }}" class="img-fluid" alt="">
-                                </div>
-                                <div class="formula-para">
-                                    <p>Made in America</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="limits-sec">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="limits-break">
-                        <h3>Science-backed formula to improve vital <span class="d-block">sleep scores and boost muscle
-                                recovery</span>while you sleep.</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-    <section class="product-inner backed-formula">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <div class="main-products">
-                        <div class="img-carousel">
-                            <a href="#">
-                                <img src="{{ url('assets/images/man2.webp') }}" class="img-fluid" alt="">
-                            </a>
+                @foreach ($data as $key => $item)
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="main-featured card border-0 shadow-sm h-100 p-3 bg-white" style="border-radius: 16px;">
+                            <div class="featured-info text-center">
+                                <a href="{{ route('productdetail', ['id' => $item->id]) }}">
+                                    <img src="{{ asset($item->image) }}" class="img-fluid mb-3" alt="{{ $item->product_title }}" style="max-height: 150px; object-fit: contain;">
+                                </a>
+                                <h6 class="font-weight-bold mb-2">
+                                    <a href="{{ route('productdetail', ['id' => $item->id]) }}" class="text-dark text-decoration-none">
+                                        {{ $item->product_title }}
+                                    </a>
+                                </h6>
+                                <p class="text-danger font-weight-bold mb-3">${{ $item->price }}</p>
+                                <a href="{{ route('productdetail', ['id' => $item->id]) }}" class="btn btn-outline-primary btn-sm btn-block font-weight-bold" style="border-radius: 20px;">
+                                    VIEW DETAILS
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="stack-ul">
-                        <ul>
-                            <li>
-                                <span><img src="{{ url('assets/images/bullet-20x20.png') }}" class="img-fluid"
-                                        alt=""></span>
-                                <p>Calcium Carbonate and Magnesium support bone and muscle health.</p>
-                            </li>
-                            <li>
-                                <span><img src="{{ url('assets/images/bullet-20x20.png') }}" class="img-fluid"
-                                        alt=""></span>
-                                <p> Vitamin B6 aids in metabolism.</p>
-                            </li>
-                            <li>
-                                <span><img src="{{ url('assets/images/bullet-20x20.png') }}" class="img-fluid"
-                                        alt=""></span>
-                                <p>L-Tryptophan helps improve sleep quality.</p>
-                            </li>
-                            <li>
-                                <span><img src="{{ url('assets/images/bullet-20x20.png') }}" class="img-fluid"
-                                        alt=""></span>
-                                <p>Goji Berry is known for its antioxidant properties.</p>
-                            </li>
-                            <li>
-                                <span><img src="{{ url('assets/images/bullet-20x20.png') }}" class="img-fluid"
-                                        alt=""></span>
-                                <p>Chamomile promotes relaxation, and Ashwagandha helps reduce stress and anxiety,
-                                    contributing to better overall wellness and sleep.</p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
-
-    <section class="stack_well">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="stack-h">
-                        <h3>STACKS WELL WITH</h3>
-                    </div>
-                    <div class="shop_pg stack-rows">
-                        <div class="row">
-                            @foreach ($data as $key => $data)
-                                <div class="col-lg-3">
-                                    <div class="main-featured">
-                                        <div class="featured-info">
-
-                                            <div class="discription-retio">
-                                                <a href="#" class="search-info">
-                                                    <span>Quick view</span>
-                                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                                </a>
-                                                <a href="macrorecharge.php">
-                                                    <div class="percent-ratio">
-                                                        <span>{{ $data->discount_price }}%</span>
-                                                    </div>
-                                                </a>
-                                            </div>
-
-                                            <div class="product-img">
-                                                <a href="{{ route('productdetail', ['id' => $data->id]) }}">
-                                                    <img src="{{ asset($data->image) }}" class="img-fluid op-one"
-                                                        alt="">
-                                                    <img src="{{ asset($data->image_2) }}" class="img-fluid op-zero"
-                                                        alt="">
-                                                </a>
-                                            </div>
-
-                                            <div class="product-name">
-                                                <h6><a href="macrorecharge.php">{{ $data->product_title }}</a></h6>
-                                                <h6 style="color: black">
-                                                    <span>${{ $data->total_price }}</span>${{ $data->price }}</h6>
-                                            </div>
-                                            @if (Auth::user()->role == 3)
-                                                <a href="#" class="btn red-btn">
-                                                    <span>ADD TO CART</span>
-                                                    <span><i class="fa-solid fa-cart-shopping"></i></span>
-                                                </a>
-                                            @else
-                                                <a href="javascript:void(0)" class="btn red-btn addToCart"
-                                                    data-product-id="{{ $value->id }}">
-                                                    <span>ADD TO CART</span>
-                                                    <span><i class="fa-solid fa-cart-shopping"></i></span>
-                                                </a>
-                                            @endif
-
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-12">
-                    <div class="guarantee">
-                        <div class="guarantee-img">
-                            <img src="{{ url('assets/images/guranty-100-1.webp') }}" class="img-fluid" alt="">
-                        </div>
-                        <p>30 DAYS 100% MONEY BACK GUARANTEE </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    @endif
 @endsection
+
 @section('css')
     <style>
-
+        .red-btn {
+            background-color: #e63946;
+            color: #ffffff;
+            border: none;
+            transition: background 0.3s ease;
+        }
+        .red-btn:hover {
+            background-color: #d62828;
+            color: #ffffff;
+        }
     </style>
-@endsection
-@section('js')
-    <script>
-        $(document).ready(function() {
-            $('.addToCart').click(function(e) {
-
-                e.preventDefault();
-
-                var productId = $(this).data('product-id');
-
-                $.ajax({
-                    url: "{{ route('save_cart') }}",
-                    method: 'POST',
-                    data: {
-                        _token: '{{ csrf_token() }}', // Include the CSRF token
-                        product_id: productId,
-                        qty: 1 // Default quantity to 1, you can adjust this if needed
-                    },
-
-                    success: function(response) {
-                        if (response.errors) {
-                            // Handle errors (if any)
-                            alert('Error: ' + response.errors);
-                        } else {
-                            // Show success message or update the cart UI
-                            alert('Product added to cart!');
-                            location.reload();
-                            // Optionally, update the cart icon count or reload part of the page
-                        }
-                    },
-                    error: function(response) {
-                        alert('An error occurred while adding the product to the cart.');
-                    }
-                });
-            });
-        });
-    </script>
-
-    <script>
-        @if (Session::has('success'))
-            alert("{{ Session::get('success') }}");
-        @elseif (Session::has('error'))
-            alert("{{ Session::get('error') }}");
-        @elseif (Session::has('info'))
-            alert("{{ Session::get('info') }}");
-        @elseif (Session::has('warning'))
-            alert("{{ Session::get('warning') }}");
-        @endif
-    </script>
 @endsection

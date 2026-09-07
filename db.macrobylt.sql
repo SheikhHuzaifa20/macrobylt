@@ -1,1 +1,0 @@
-SELECT * FROM products WHERE feature_product=0orders

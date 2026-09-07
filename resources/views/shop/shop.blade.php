@@ -1,258 +1,117 @@
 @extends('layouts.main')
 @section('content')
-    <section class="inner-banner">
+    <section class="inner-banner py-5" style="background: linear-gradient(135deg, #161b22 0%, #0d1117 100%); color: #fff;">
         <div class="container">
-            <div class="row">
+            <div class="row text-center py-4">
                 <div class="col-lg-12">
                     <div class="banner-content">
-                        <h1>Shop</h1>
-                        <h5>HOME<span>/</span><a href="#">SHOP</a></h5>
+                        <h1 class="display-4 font-weight-bold text-uppercase mb-2" style="letter-spacing: 1px;">MOBILE ACCESSORIES SHOP</h1>
+                        <p class="text-muted lead">Explore high-speed GaN chargers, MagSafe power banks, wireless earbuds & armor cases.</p>
+                        <h6 class="text-white-50"><a href="{{ route('home') }}" class="text-decoration-none" style="color: #00d2ff;">HOME</a> <span class="mx-2">/</span> SHOP</h6>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-
-
-    <section class="featured-product shop_pg">
+    <section class="featured-product shop_pg py-5" style="background-color: #f8f9fa;">
         <div class="container">
             <div class="row">
                 @foreach ($shops as $key => $value)
-                    <div class="col-lg-4">
-                        <div class="main-featured">
-                            <div class="featured-info">
-                                <div class="discription-retio">
-                                    <a href="{{ route('productdetail', ['id' => $value->id]) }}" class="search-info">
-                                        <span>Quick view</span>
-                                        <i class="fa-solid fa-magnifying-glass"></i>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="main-featured card border-0 shadow-sm h-100 p-3" style="border-radius: 16px; background: #ffffff;">
+                            <div class="featured-info position-relative">
+                                <div class="discription-retio d-flex justify-content-between align-items-center mb-2">
+                                    <a href="{{ route('productdetail', ['id' => $value->id]) }}" class="search-info badge badge-secondary px-3 py-2">
+                                        <span>Quick View</span> <i class="fa-solid fa-magnifying-glass ml-1"></i>
                                     </a>
-                                    <a href="{{ route('productdetail', ['id' => $value->id]) }}">
-                                        <div class="percent-ratio">
-                                            <span>{{ $value->discount_price }}%</span>
+                                    @if(!empty($value->discount_price))
+                                        <div class="percent-ratio bg-danger text-white font-weight-bold px-2 py-1 rounded">
+                                            <span>-{{ $value->discount_price }}%</span>
                                         </div>
+                                    @endif
+                                </div>
+
+                                <div class="product-img text-center my-3" style="height: 220px; display: flex; align-items: center; justify-content: center;">
+                                    <a href="{{ route('productdetail', ['id' => $value->id]) }}">
+                                        <img src="{{ asset($value->image) }}" class="img-fluid op-one" alt="{{ $value->product_title }}" style="max-height: 200px; object-fit: contain;">
                                     </a>
                                 </div>
 
-                                <div class="product-img"> <a href="{{ route('productdetail', ['id' => $value->id]) }}">
-                                        <img src="{{ $value->image }}" class="img-fluid op-one" alt="">
-                                        <img src="images/product-3-detail.webp" class="img-fluid op-zero" alt="">
+                                <div class="product-name text-center mt-3">
+                                    <span class="badge badge-light text-muted mb-2 px-3 py-1" style="border: 1px solid #ddd;">{{ $value->category_title ?? 'Accessories' }}</span>
+                                    <h5 class="font-weight-bold mb-2">
+                                        <a href="{{ route('productdetail', ['id' => $value->id]) }}" style="color: #222; text-decoration: none;">
+                                            {{ $value->product_title }}
+                                        </a>
+                                    </h5>
+                                    <div class="price-box mb-3">
+                                        @if(!empty($value->total_price))
+                                            <span class="text-muted text-decoration-line-through mr-2" style="text-decoration: line-through;">${{ $value->total_price }}</span>
+                                        @endif
+                                        <span class="text-danger font-weight-bold h5">${{ $value->price }}</span>
+                                    </div>
+
+                                    <a href="javascript:void(0)" class="btn red-btn btn-block py-2 font-weight-bold addToCart"
+                                        data-product-id="{{ $value->id }}" style="border-radius: 25px;">
+                                        <span>ADD TO CART</span>
+                                        <span class="ml-2"><i class="fa-solid fa-cart-shopping"></i></span>
                                     </a>
-                                    @if (Auth::user()->role == 3)
-                                        <a href="javascript:void(0)" class="btn red-btn"
-                                            data-product-id="{{ $value->id }}">
-                                            <span> Add to cart</span>
-                                            <span><i class="fa-solid fa-cart-shopping"></i></span>
-                                        </a>
-                                    @else
-                                    <a href="javascript:void(0)" class="btn red-btn addToCart"
-                                            data-product-id="{{ $value->id }}">
-                                            <span> Add to cart</span>
-                                            <span><i class="fa-solid fa-cart-shopping"></i></span>
-                                        </a>
-                                    @endif
-                                </div>
-                                <div class="product-name">
-                                    <h6><a
-                                            href="{{ route('productdetail', ['id' => $value->id]) }}">{{ $value->product_title }}</a>
-                                    </h6>
-                                    <h6> <span>${{ $value->total_price }}</span>${{ $value->price }}</h6>
                                 </div>
                             </div>
                         </div>
                     </div>
                 @endforeach
-                {{-- <div class="col-lg-3">
-                   <div class="main-featured">
-                        <div class="featured-info">
-                             <div class="discription-retio">
-                                  <a href="#" class="search-info"> <span>Quick view</span>
-                                       <i class="fa-solid fa-magnifying-glass"></i>
-                                  </a>
-                                  <a href="macroboost-ultra-test.php">
-                                       <div class="percent-ratio">
-                                            <span>-21%</span>
-                                       </div>
-                                  </a>
-                             </div>
-
-                             <div class="product-img"> <a href="macroboost-ultra-test.php">
-                                       <img src="images/product-5.webp" class="img-fluid op-one" alt="">
-                                       <img src="images/product-5-detail.webp" class="img-fluid op-zero" alt="">
-                                  </a>
-                                  <a href="macroboost-ultra-test.php" class="btn red-btn">
-                                       <span> Add to cart</span>
-                                       <span><i class="fa-solid fa-cart-shopping"></i></span>
-                                  </a>
-                             </div>
-                             <div class="product-name">
-                                  <h6><a href="macroboost-ultra-test.php">MacroBoost – Ultra Test <span class="d-block">Male Enhancement
-                                            </span></a></h6>
-                                  <h6> <span>$69.99</span> $54.99</h6>
-                             </div>
-                        </div>
-                   </div>
-              </div>
-
-              <div class="col-lg-3">
-                   <div class="main-featured">
-                        <div class="featured-info">
-                             <div class="discription-retio">
-                                  <a href="#" class="search-info"> <span>Quick view</span>
-                                       <i class="fa-solid fa-magnifying-glass"></i>
-                                  </a>
-                                  <a href="macrolean-pro.php">
-                                       <div class="percent-ratio">
-                                            <span>-23%</span>
-                                       </div>
-                                  </a>
-                             </div>
-
-                             <div class="product-img"> <a href="macrolean-pro.php">
-                                       <img src="images/product-4.webp" class="img-fluid op-one" alt="">
-                                       <img src="images/product-4-detail.webp" class="img-fluid op-zero" alt="">
-                                  </a>
-                                  <a href="macrolean-pro.php" class="btn red-btn">
-                                       <span> Add to cart</span>
-                                       <span><i class="fa-solid fa-cart-shopping"></i></span>
-                                  </a>
-                             </div>
-                             <div class="product-name">
-                                  <h6><a href="macrolean-pro.php">MacroLean Pro</a></h6>
-                                  <h6> <span>$64.99</span> $49.99</h6>
-                             </div>
-                        </div>
-                   </div>
-              </div>
-
-              <div class="col-lg-3">
-                   <div class="main-featured">
-                        <div class="featured-info">
-                             <div class="discription-retio">
-                                  <a href="#" class="search-info"> <span>Quick view</span>
-                                       <i class="fa-solid fa-magnifying-glass"></i>
-                                  </a>
-                                  <a href="macrorecharge.php">
-                                       <div class="percent-ratio">
-                                            <span>-30%</span>
-                                       </div>
-                                  </a>
-                             </div>
-
-                             <div class="product-img"> <a href="macrorecharge.php">
-                                       <img src="images/product-3.webp" class="img-fluid op-one" alt="">
-                                       <img src="images/product-3-detail.webp" class="img-fluid op-zero" alt="">
-                                  </a>
-                                  <a href="macrorecharge.php" class="btn red-btn">
-                                       <span> Add to cart</span>
-                                       <span><i class="fa-solid fa-cart-shopping"></i></span>
-                                  </a>
-                             </div>
-                             <div class="product-name">
-                                  <h6><a href="macrorecharge.php">MacroRecharge</a></h6>
-                                  <h6> <span>$49.99</span> $34.99</h6>
-                             </div>
-                        </div>
-                   </div>
-              </div>
-              <div class="col-lg-3">
-                   <div class="main-featured">
-                        <div class="featured-info">
-                             <div class="discription-retio">
-                                  <a href="#" class="search-info"> <span>Quick view</span>
-                                       <i class="fa-solid fa-magnifying-glass"></i>
-                                  </a>
-                                  <a href="macroshred-ignite.php">
-                                       <div class="percent-ratio">
-                                            <span>-8%</span>
-                                       </div>
-                                  </a>
-                             </div>
-
-                             <div class="product-img"> <a href="macroshred-ignite.php">
-                                       <img src="images/product-2.png" class="img-fluid op-one" alt="">
-                                       <img src="images/product-2-detail.jpg" class="img-fluid op-zero" alt="">
-                                  </a>
-                                  <a href="macroshred-ignite.php" class="btn red-btn">
-                                       <span> Add to cart</span>
-                                       <span><i class="fa-solid fa-cart-shopping"></i></span>
-                                  </a>
-                             </div>
-                             <div class="product-name">
-                                  <h6><a href="macroshred-ignite.php">MacroShred Ignite</a></h6>
-                                  <h6> <span>$59.99</span> $54.99</h6>
-                             </div>
-                        </div>
-                   </div>
-              </div>
-
-
-              <div class="col-lg-3">
-                   <div class="main-featured">
-                        <div class="featured-info">
-                             <div class="discription-retio">
-                                  <a href="#" class="search-info"> <span>Quick view</span>
-                                       <i class="fa-solid fa-magnifying-glass"></i>
-                                  </a>
-                                  <a href="macrosurge-pre.php">
-                                       <div class="percent-ratio">
-                                            <span>-30%</span>
-                                       </div>
-                                  </a>
-                             </div>
-
-                             <div class="product-img"> <a href="macrosurge-pre.php">
-                                       <img src="images/product-1.webp" class="img-fluid op-one" alt="">
-                                       <img src="images/product-1-detail.webp" class="img-fluid op-zero" alt="">
-                                  </a>
-                                  <a href="macrosurge-pre.php" class="btn red-btn">
-                                       <span> SELECT OPTIONS</span>
-                                       <span><i class="fa-solid fa-cart-shopping"></i></span>
-                                  </a>
-                             </div>
-                             <div class="product-name">
-                                  <h6><a href="macrosurge-pre.php">MacroSurge Pre</a></h6>
-                                  <h6> <span>$49.99</span> $34.99</h6>
-                             </div>
-                        </div>
-                   </div>
-              </div> --}}
             </div>
         </div>
     </section>
 @endsection
+
 @section('css')
     <style>
-
+        .main-featured:hover {
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+            box-shadow: 0 12px 24px rgba(0,210,255,0.15) !important;
+            border: 2px solid #00d2ff !important;
+        }
+        .red-btn {
+            background: linear-gradient(135deg, #0099cc, #00d2ff);
+            color: #ffffff;
+            border: none;
+            transition: background 0.3s ease;
+        }
+        .red-btn:hover {
+            background: linear-gradient(135deg, #007aa3, #0099cc);
+            color: #ffffff;
+        }
+        .search-info {
+            color: #00d2ff !important;
+        }
     </style>
 @endsection
+
 @section('js')
     <script>
         $(document).ready(function() {
             $('.addToCart').click(function(e) {
-
                 e.preventDefault();
-
                 var productId = $(this).data('product-id');
 
                 $.ajax({
                     url: "{{ route('save_cart') }}",
                     method: 'POST',
                     data: {
-                        _token: '{{ csrf_token() }}', // Include the CSRF token
+                        _token: '{{ csrf_token() }}',
                         product_id: productId,
-                        qty: 1 // Default quantity to 1, you can adjust this if needed
+                        qty: 1
                     },
-
                     success: function(response) {
                         if (response.errors) {
-                            // Handle errors (if any)
                             alert('Error: ' + response.errors);
                         } else {
-                            // Show success message or update the cart UI
                             alert('Product added to cart!');
                             location.reload();
-                            // Optionally, update the cart icon count or reload part of the page
                         }
                     },
                     error: function(response) {

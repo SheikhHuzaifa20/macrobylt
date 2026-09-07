@@ -47,7 +47,7 @@ class LogViewerController extends Controller
      *
      * @param  \Arcanedev\LogViewer\Contracts\LogViewer  $logViewer
      */
-    public function __construct(LogViewerContract $logViewer)
+    public function __construct(LogViewerContract $logViewer = null)
     {
         $this->logViewer = $logViewer;
         $this->perPage = config('log-viewer.per-page', $this->perPage);

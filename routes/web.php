@@ -138,14 +138,15 @@ Route::group(['middleware' => ['auth', 'roles'],'roles' => 'admin','prefix'=>'ad
 //==============================================================//
 
 //Log Viewer
-Route::get('log-viewers', '\Arcanedev\LogViewer\Http\Controllers\LogViewerController@index')->name('log-viewers');
-Route::get('log-viewers/logs', '\Arcanedev\LogViewer\Http\Controllers\LogViewerController@listLogs')->name('log-viewers.logs');
-Route::delete('log-viewers/logs/delete', '\Arcanedev\LogViewer\Http\Controllers\LogViewerController@delete')->name('log-viewers.logs.delete');
-Route::get('log-viewers/logs/{date}', '\Arcanedev\LogViewer\Http\Controllers\LogViewerController@show')->name('log-viewers.logs.show');
-Route::get('log-viewers/logs/{date}/download', '\Arcanedev\LogViewer\Http\Controllers\LogViewerController@download')->name('log-viewers.logs.download');
-Route::get('log-viewers/logs/{date}/{level}', '\Arcanedev\LogViewer\Http\Controllers\LogViewerController@showByLevel')->name('log-viewers.logs.filter');
-Route::get('log-viewers/logs/{date}/{level}/search', '\Arcanedev\LogViewer\Http\Controllers\LogViewerController@search')->name('log-viewers.logs.search');
-Route::get('log-viewers/logcheck', '\Arcanedev\LogViewer\Http\Controllers\LogViewerController@logCheck')->name('log-viewers.logcheck');
+// Route::get('log-viewers', '\Arcanedev\LogViewer\Http\Controllers\LogViewerController@index')->name('log-viewers');
+// Route::get('log-viewers/logs', '\Arcanedev\LogViewer\Http\Controllers\LogViewerController@listLogs')->name('log-viewers.logs');
+// Route::delete('log-viewers/logs/delete', '\Arcanedev\LogViewer\Http\Controllers\LogViewerController@delete')->name('log-viewers.logs.delete');
+// Route::get('log-viewers/logs/{date}', '\Arcanedev\LogViewer\Http\Controllers\LogViewerController@show')->name('log-viewers.logs.show');
+// Route::get('log-viewers/logs/{date}/download', '\Arcanedev\LogViewer\Http\Controllers\LogViewerController@download')->name('log-viewers.logs.download');
+// Route::get('log-viewers/logs/{date}/{level}', '\Arcanedev\LogViewer\Http\Controllers\LogViewerController@showByLevel')->name('log-viewers.logs.filter');
+// Route::get('log-viewers/logs/{date}/{level}/search', '\Arcanedev\LogViewer\Http\Controllers\LogViewerController@search')->name('log-viewers.logs.search');
+// Route::get('log-viewers/logcheck', '\Arcanedev\LogViewer\Http\Controllers\LogViewerController@logCheck')->name('log-viewers.logcheck');
+
 
 
 Route::get('auth/{provider}/','Auth\SocialLoginController@redirectToProvider');
@@ -311,11 +312,11 @@ Route::post('admin/pro-img-id-delet', 'Admin\\AttributesValueController@img_dele
 Route::post('admin/delete-product-variant', 'Admin\\AttributesValueController@deleteProVariant')->name('delete.product.variant');
 Route::resource('admin/testimonial', 'Admin\\TestimonialController');
 Route::resource('admin/page', 'Admin\\PageController');
-Route::resource('about/about', 'Admin, User\\AboutController');
-Route::resource('news/news', 'Admin\\NewsController');
+// Route::resource('about/about', 'Admin\AboutController');
+// Route::resource('news/news', 'Admin\NewsController');
 
-Route::resource('traning-videos', 'TraningVideosController');
-Route::resource('upcomingclasses', 'UpcomingclassesController');
+// Route::resource('traning-videos', 'TraningVideosController');
+// Route::resource('upcomingclasses', 'UpcomingclassesController');
 Route::resource('audio_gallery', 'Audio_gallery\Audio_galleryController');
 Route::resource('gallery_picture/gallery_picture', 'Gallery_picture\Gallery_pictureController');
 Route::resource('favorite_dj/favorite_dj', 'Favorite_dj\Favorite_djController');

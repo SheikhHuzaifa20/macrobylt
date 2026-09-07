@@ -38,7 +38,7 @@ class HandleExceptions
 
         $this->app = $app;
 
-        error_reporting(-1);
+        error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING & ~E_DEPRECATED & ~E_USER_DEPRECATED);
 
         set_error_handler([$this, 'handleError']);
 
@@ -65,6 +65,9 @@ class HandleExceptions
      */
     public function handleError($level, $message, $file = '', $line = 0, $context = [])
     {
+        if ($level & (E_DEPRECATED | E_USER_DEPRECATED)) {
+            return;
+        }
         if (error_reporting() & $level) {
             throw new ErrorException($message, 0, $level, $file, $line);
         }

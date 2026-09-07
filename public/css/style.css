@@ -28,7 +28,7 @@ h4 {
 }
 
 :root {
-  --red-color: #820f0e;
+  --red-color: #00d2ff;
   --black-color: #0d1013;
   --white-color: #fff;
   --grey-color: #2c313794;
@@ -38,8 +38,9 @@ h4 {
 
 /* header css start */
 header {
-  background: var(--red-color);
-  padding: 10px 320px;
+  background: #0d1013;
+  border-bottom: 2px solid var(--red-color);
+  padding: 10px 0;
 }
 
 .navbar-brand img {

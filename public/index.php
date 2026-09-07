@@ -1,5 +1,8 @@
 <?php
 
+error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING & ~E_DEPRECATED);
+ini_set('display_errors', '0');
+
 /**
  * Laravel - A PHP Framework For Web Artisans
  *
