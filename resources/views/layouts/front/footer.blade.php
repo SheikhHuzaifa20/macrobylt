@@ -2,10 +2,22 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="statement-para">
-                    <p>
-                        GadgetGrove is your ultimate destination for high-speed GaN fast chargers, magnetic MagSafe power banks, military-grade armor cases, and premium wireless audio gear. Engineered for performance and built to last.
-                    </p>
+                <div class="statement-para position-relative overflow-hidden mb-5" style="
+                    background: linear-gradient(135deg, rgba(13, 16, 19, 0.88) 0%, rgba(10, 15, 29, 0.92) 100%), url('{{ asset('images/footer-statement-bg.png') }}') center/cover no-repeat;
+                    border: 1px solid rgba(0, 210, 255, 0.25);
+                    border-radius: 24px;
+                    padding: 45px 35px;
+                    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(0, 210, 255, 0.05);
+                    text-align: center;
+                ">
+                    <div style="max-width: 900px; margin: 0 auto;">
+                        <span class="text-uppercase font-weight-bold px-3 py-1 mb-3 d-inline-block rounded-pill" style="background: rgba(0, 210, 255, 0.15); color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.3); font-size: 0.8rem; letter-spacing: 2px;">
+                            GADGETGROVE PROMISE
+                        </span>
+                        <p class="mb-0" style="color: #ffffff; font-size: 1.25rem; font-weight: 600; line-height: 1.8; letter-spacing: 0.5px; text-shadow: 0 2px 8px rgba(0,0,0,0.8);">
+                            GadgetGrove is your ultimate destination for high-speed GaN fast chargers, magnetic MagSafe power banks, military-grade armor cases, and premium wireless audio gear. Engineered for performance and built to last.
+                        </p>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-3">

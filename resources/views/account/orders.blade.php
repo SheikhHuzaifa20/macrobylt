@@ -1,176 +1,178 @@
 @extends('layouts.main')
-@section('title', 'Order')
+@section('title', 'Order History')
 @section('content')
 
     <?php $segment = Request::segments(); ?>
 
-
-    <section class="dashboard-form">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="back_leaf">
-                        <h2><span class="type_span" data-typetext=" Audio"> </span><img
-                                src="{{ asset('images/heading_leaf.png') }}" class="img-fluid" alt=""> </h2>
-                    </div>
-
+    <section class="inner-banner py-4" style="background: linear-gradient(135deg, #161b22 0%, #0d1013 100%); border-bottom: 1px solid rgba(0, 210, 255, 0.15);">
+        <div class="container">
+            <div class="row text-center py-3">
+                <div class="col-12">
+                    <span class="text-uppercase font-weight-bold px-3 py-1 mb-2 d-inline-block rounded-pill" style="background: rgba(0, 210, 255, 0.1); color: #00d2ff; border: 1px solid rgba(0, 210, 255, 0.3); font-size: 0.8rem; letter-spacing: 2px;">
+                        MY ORDERS
+                    </span>
+                    <h1 class="mb-2" style="font-family: 'Bebas Neue', sans-serif; color: #ffffff; font-size: 2.5rem; letter-spacing: 2px;">ORDER HISTORY</h1>
+                    <p style="color: #94a3b8; font-size: 0.95rem;">Track and manage your previous orders</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <style>
-        .text {
-            color: white !important;
-        }
-    </style>
+    <main style="background: linear-gradient(180deg, #0d1013 0%, #0a0f1d 100%); min-height: 80vh; padding: 40px 0;">
+        <div class="container">
+            <div class="row">
+                @include('account.sidebar')
 
-    <main class="my-cart">
-        <div class="my-account-wrapper">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="myaccount-page-wrapper">
-                            <div class="row">
-                                @include('account.sidebar')
-                                <div class="col-lg-9 col-md-8 acc-tab-content-start">
-                                    <div class="tab-content" id="myaccountContent">
-                                        <!-- Single Tab Content Start -->
-                                        <div class="tab-pane fade show active" id="dashboad">
-                                            <div class="myaccount-content">
-                                                <div class="section-heading text">
-                                                    <h2>Order Records</h2>
-                                                </div>
-                                                <table id="example"
-                                                    class="table table-striped table-bordered table-content" cellspacing="0"
-                                                    width="100%">
-                                                    <thead style="background-color: #820f0e;">
-                                                        <tr class="text">
-                                                            <th>S.No</th>
-                                                            <th>Name</th>
-                                                            <th>Email</th>
-                                                            <th>Phone</th>
-                                                            <th>Date</th>
-                                                            <th>Total</th>
-                                                            <th>Action</th>
-                                                        </tr>
-                                                    </thead>
+                <div class="col-lg-9 col-md-8">
+                    <div class="p-4 p-md-5" style="background: #161b22; border: 1px solid rgba(0,210,255,0.15); border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                        <h4 class="text-uppercase font-weight-bold mb-3" style="font-family: 'Bebas Neue', sans-serif; color: #00d2ff; letter-spacing: 1.5px; font-size: 1.6rem;">
+                            <i class="fa-solid fa-receipt mr-2"></i> Order Records
+                        </h4>
+                        <div style="height: 1px; background: linear-gradient(90deg, rgba(0,210,255,0.3), transparent); margin-bottom: 25px;"></div>
 
-                                                    {{-- <tfoot style="background-color: #820f0e;">
-                                                        <tr class="text">
-                                                            <th>S.No</th>
-                                                            <th>Name</th>
-                                                            <th>Email</th>
-                                                            <th>Phone</th>
-                                                            <th>Date</th>
-                                                            <th>Total</th>
-                                                            <th>Action</th>
-                                                        </tr>
-                                                    </tfoot> --}}
-                                                    <tbody style="color: white;">
-                                                        @php
-                                                            $count = 1;
-                                                        @endphp
-                                                        @foreach ($ORDERS as $val)
-                                                            <tr class="text">
-                                                                <td>{{ $count }}</td>
-                                                                <td>{{ $val->delivery_first_name }}</td>
-                                                                <td>{{ $val->order_email }}</td>
-                                                                <td>{{ $val->delivery_phone_no }}</td>
-                                                                <td>{{ date('d F, Y h:i a', strtotime($val->created_at)) }}
-                                                                </td>
-                                                                <td>${{ $val->order_total }}</td>
-                                                                <td>
-                                                                    <a class="btn btn-primary view-btn my-4"
-                                                                        style="align-content: center;"
-                                                                        href="{{ route('invoice', [$val->id]) }}">View
-                                                                        Invoice</a>
-                                                                    {{-- <button type="button" class="btn btn-primary view-btn"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#viewModal{{ $count }}">View Audio</button> --}}
-                                                                </td>
-                                                            </tr>
-                                                            {{-- View Modal --}}
-                                                            <div class="modal fade" id="viewModal{{ $count }}"
-                                                                tabindex="-1" role="dialog"
-                                                                aria-labelledby="viewModalLabel{{ $count }}"
-                                                                aria-hidden="true">
-                                                                <div class="modal-dialog">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <h5 class="modal-title" id="exampleModalLabel">
-                                                                                View Audio
-                                                                            </h5>
-                                                                            <button type="button" class="btn-close"
-                                                                                data-bs-dismiss="modal"
-                                                                                aria-label="Close"></button>
-                                                                        </div>
-                                                                        <div class="modal-body">
-                                                                            <!-- Audio Player -->
-                                                                            @foreach ($val['orderProducts'] as $orderProduct)
-                                                                                <audio controls>
-                                                                                    <source
-                                                                                        src="{{ $orderProduct['audio']['audio_link'] }}"
-                                                                                        type="audio/mpeg">
-                                                                                    Your browser does not support the audio
-                                                                                    element.
-                                                                                </audio>
-                                                                                <div>
-                                                                                    <a href="{{ $orderProduct['audio']['audio_link'] }}"
-                                                                                        download
-                                                                                        class="btn btn-secondary">Download</a>
-                                                                                </div>
-                                                                            @endforeach
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            @php
-                                                                $count++;
-                                                            @endphp
-                                                        @endforeach
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                        <!-- Single Tab Content End -->
-
-                                    </div>
-                                </div> <!-- My Account Tab Content End -->
-                            </div>
-                        </div> <!-- My Account Page End -->
+                        <div class="table-responsive">
+                            <table id="example" class="table gg-table" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Date</th>
+                                        <th>Total</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php $count = 1; @endphp
+                                    @foreach ($ORDERS as $val)
+                                        <tr>
+                                            <td>{{ $count }}</td>
+                                            <td>{{ $val->delivery_first_name }}</td>
+                                            <td>{{ $val->order_email }}</td>
+                                            <td>{{ $val->delivery_phone_no }}</td>
+                                            <td>{{ date('d M, Y h:i a', strtotime($val->created_at)) }}</td>
+                                            <td style="color: #00d2ff; font-weight: 700;">${{ $val->order_total }}</td>
+                                            <td>
+                                                <a class="gg-view-btn" href="{{ route('invoice', [$val->id]) }}">
+                                                    <i class="fa-solid fa-file-invoice mr-1"></i> View Invoice
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        @php $count++; @endphp
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </div>
-        <!-- my account wrapper end -->
-
-
-        <!-- main content end -->
     </main>
-    @if (session('error'))
-        <script>
-            alert('{{ session('error') }}')
-        </script>
-    @endif
 
+    @if (session('error'))
+        <script>alert('{{ session('error') }}')</script>
+    @endif
     @if (session('success'))
-        <script>
-            alert('{{ session('success') }}')
-        </script>
+        <script>alert('{{ session('success') }}')</script>
     @endif
 
 @endsection
+
+@section('css')
+    <style>
+        .gg-table {
+            border-collapse: separate;
+            border-spacing: 0 6px;
+            color: #cbd5e1;
+            font-size: 0.95rem;
+        }
+        .gg-table thead tr {
+            background: linear-gradient(135deg, #0099cc, #00d2ff);
+        }
+        .gg-table thead th {
+            color: #ffffff !important;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            padding: 14px 16px;
+            border: none !important;
+        }
+        .gg-table tbody tr {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(0,210,255,0.1);
+            transition: all 0.2s ease;
+        }
+        .gg-table tbody tr:hover {
+            background: rgba(0, 210, 255, 0.08);
+            border-color: rgba(0,210,255,0.3);
+        }
+        .gg-table tbody td {
+            padding: 14px 16px;
+            border: none !important;
+            border-top: 1px solid rgba(0,210,255,0.08) !important;
+            color: #cbd5e1;
+            vertical-align: middle;
+        }
+        .gg-view-btn {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(0,210,255,0.1);
+            color: #00d2ff;
+            border: 1px solid rgba(0,210,255,0.3);
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none !important;
+            transition: all 0.2s ease;
+        }
+        .gg-view-btn:hover {
+            background: linear-gradient(135deg, #0099cc, #00d2ff);
+            color: #ffffff !important;
+            border-color: transparent;
+            box-shadow: 0 4px 12px rgba(0,210,255,0.3);
+        }
+        .dataTables_wrapper .dataTables_length select,
+        .dataTables_wrapper .dataTables_filter input {
+            background: #0d1013 !important;
+            border: 1px solid rgba(0,210,255,0.2) !important;
+            border-radius: 8px !important;
+            color: #ffffff !important;
+            padding: 6px 12px !important;
+        }
+        .dataTables_wrapper .dataTables_info,
+        .dataTables_wrapper .dataTables_length label,
+        .dataTables_wrapper .dataTables_filter label {
+            color: #94a3b8 !important;
+        }
+        .dataTables_wrapper .paginate_button {
+            background: rgba(0,210,255,0.08) !important;
+            border: 1px solid rgba(0,210,255,0.2) !important;
+            border-radius: 8px !important;
+            color: #00d2ff !important;
+        }
+        .dataTables_wrapper .paginate_button.current,
+        .dataTables_wrapper .paginate_button:hover {
+            background: linear-gradient(135deg, #0099cc, #00d2ff) !important;
+            border-color: transparent !important;
+            color: #ffffff !important;
+        }
+    </style>
+@endsection
+
 @section('js')
     <script type="text/javascript">
-        $(document).on('click', ".btn1", function(e) {
-            // alert('it works');
-            $('.loginForm').submit();
-        });
-
         $(document).ready(function() {
-            $('#example').dataTable();
+            $('#example').DataTable({
+                "language": {
+                    "search": "",
+                    "searchPlaceholder": "Search orders...",
+                    "lengthMenu": "Show _MENU_ orders"
+                }
+            });
         });
     </script>
 @endsection
